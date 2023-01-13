@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="./assest/favicon.png" type="image/x-icon">
+    <title>Amazing Events| Past Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="app">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-black container-fluid">
+        <div class="container-fluid">
+          <a class="navbar-brand ms-3" href="#">
+            <img src="./assest/LogoAmazingEvents.png" alt="logo" class="imglogo col-md-5 col-8">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ms-auto">
+                  <li class="nav-item navbar-dark bg-black">
+                    <a class="nav-link" aria-current="page" href="./index.html">HOME</a>
+                  </li>
+                  <li class="nav-item navbar-dark bg-black">
+                    <a class="nav-link" href="./upcoming.html">UPCOMING EVENTS</a>
+                  </li>
+                  <li class="nav-item navbar-dark bg-black">
+                    <a class="nav-link" href="#">PAST EVENTS</a>
+                  </li>
+                  <li class="nav-item navbar-dark bg-black">
+                    <a class="nav-link" href="./contact.html">CONTACT</a>
+                  </li>
+                  <li class="nav-item navbar-dark bg-black">
+                    <a class="nav-link" href="./stats.html">STATS</a>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+    </header>
+    <main>
+      <div class="titulo">
+        <h1><strong>PAST EVENTS</strong></h1> 
+      </div>
+      <div class="checksearch d-flex flex-wrap">
+        <div class="check m-1"  id="checkCategory">
+          <label v-if="categories" class="btn btn-dark-active " v-for="check of categories">
+            <input type="checkbox"  v-model="checked"  @change="crossFilter" :value="check" name="" id="" autocomplete="off"> {{check}}
+        </label>
+        </div>
+        <div class="seccsearch">
+          <label>
+            <input class="form-control me-2" v-model="valueOfSearch" @input="crossFilter" type="search" placeholder="Search" aria-label="Search" id = "searchSpace">
+          </label>
+        </div>
+      </div>
+      <div class="secc-cards" id="secc-cards">
+        <div  class="secc-cards" v-for="event of filterEvents">
+          <div class="card border border-2 border-white  bg-dark bg-success p-2 text-white bg-opacity-50 m-3 d-flex flex-column"  style="width: 19rem;">
+            <div class="card.top " > 
+              <img v-bind:src="event.image " class="card-img-top" :alt="event.name">
+              <div class="card-body" style="height: 24vh;">
+                <h5 class="card-title"> {{event.name}} </h5>
+                <p class="card-text">{{event.description}} </p>
+              </div>
+              <div class="card.botton d-flex justify-content-around">
+                <p class="card-text "> Price : $ {{event.price}}</p>
+                <a :href="'./details.html?id=' + event._id" class="btn btn-dark ">See More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p v-if="filterEvents && !filterEvents.length" class="d-flex justify-content-center">Event not found, try again</p>
+    </main>
+    
+    <footer>
+    <div class="iconos">
+      <a class="navbar-brand m-1 ms-2" href="https://www.instagram.com/" >
+        <img src="./assest/instagram.png" alt="instagram" style="width: 2rem;">
+      </a>
+      <a class="navbar-brand m-1" href="https://www.facebook.com/">
+        <img src="./assest/facebook.png" alt="facebook" style="width: 2rem;">
+      </a>
+      <a class="navbar-brand m-1" href="https://www.whatsapp.com/">
+        <img src="./assest/whatsapp.png" alt="whatsapp" style="width: 2rem;">
+      </a>
+    </div>
+    <div class="cohort">
+      <p><strong>Cohort 41</strong></p>
+    </div>
+  </div>
+  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./past.js"></script>
+  </body>
+</html>
